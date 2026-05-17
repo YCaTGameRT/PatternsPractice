@@ -1,54 +1,38 @@
-#pragma once
 #ifndef _FORM_H_
 #define _FORM_H_
 
 #include <string>
-#include <iostream>
 
 class Form {
 public:
-	//enum class в отличии от enum не доступен без содержащего его класса
 	enum class Shapes {
 		circle,
 		triangle,
 		square,
 		star
 	};
-	
-	Form(Shapes shape) {
-		this->shape = shape;
+
+	Form(Shapes shape) : shape(shape) {
 		switch (shape) {
-		case Shapes::circle:
-			this->name = "crircle";
-			break;
-		case Shapes::triangle:
-			this->name = "triangle";
-			break;
-		case Shapes::square:
-			this->name = "square";
-			break;
-		case Shapes::star:
-			this->name = "star";
-			break;
+		case Shapes::circle:   name = "circle"; break;
+		case Shapes::triangle: name = "triangle"; break;
+		case Shapes::square:   name = "square"; break;
+		case Shapes::star:     name = "star"; break;
 		}
 	}
 
-	std::string GetName() const {
-		return name; 
-	}
-	Shapes GetShape() const {
-		return shape;
-	}
+	std::string GetName() const { return name; }
+	Shapes GetShape() const { return shape; }
 
-	virtual bool operator==(const Form& rso) const { 
-		return shape == rso.shape;
+	bool operator==(const Form& other) const {
+		return shape == other.shape;
 	}
-	virtual bool IsEqual(const Form& rso) const {
-		return *this == rso;
+	bool IsEqual(const Form& other) const {
+		return *this == other;
 	}
 private:
 	Shapes shape;
 	std::string name;
 };
 
-#endif //!_FORM_H_
+#endif

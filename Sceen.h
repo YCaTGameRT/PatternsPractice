@@ -1,36 +1,50 @@
-#pragma once
-
 #ifndef _SCEEN_H_
 #define _SCEEN_H_
 
-#include "Frames.h"
-#include "Toys.h"
+#include "Player.h"
+#include "Panel.h"
+#include "GameLevel.h"
+#include <vector>
+#include <string>
 
-//
-class Player;
-class Panel;
-
-class Sceen {
+class Screen {
 public:
-	struct Action {
-		//
+	enum class PlayerAction {
+		InspectToy,
+		InspectFrame,
+		PlaceToy,
+		NextToy,
+		PrevToy,
+		Quit
 	};
 
-	Sceen() = default;
-	Sceen(...); //
+	struct ActionResult {
+		bool success;
+		int pointsEarned;
+		std::string message;
+	};
+
+	Screen(const GameLevel& level);
 
 	void Start();
+	void GameCycle();
 
-	void GameCicle();
+	Player& GetPlayer() { return player; }
+	Panel& GetPanel() { return panel; }
+	int GetScore() const { return score; }
 
-	Player& GetPlayer();
-	Panel& GetPanel();
+	ActionResult PerformAction(PlayerAction action, int frameIndex = -1);
 
-	//дальнейший перечень публичных и приватных методов должен исходить из правил игровой логики
 private:
 	Player player;
 	Panel panel;
-	//
+	GameLevel level;
+	int score = 0;
+	int remainingTime;
+	bool isGameActive = false;
+
+	void GenerateLevelContent();
+	void ShowState() const;
 };
 
 #endif
