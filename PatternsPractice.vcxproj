@@ -21,12 +21,19 @@
   <ItemGroup>
     <ClInclude Include="Form.h" />
     <ClInclude Include="Frames.h" />
+    <ClInclude Include="GameLevel.h" />
+    <ClInclude Include="Panel.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Sceen.h" />
     <ClInclude Include="SceenDirector.h" />
+    <ClInclude Include="ScreenWorker.h" />
     <ClInclude Include="Toys.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Задание.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sceen.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
